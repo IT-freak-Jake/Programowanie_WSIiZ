@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pl">
+        <head>
+            <meta charset="utf-8" />
+            <title>My Website</title>
+        </head>
+    <body>
+        Dodawanie: <div id="dodawanie"> </div><br/>
+        Odejmowanie: <div id="odejmowanie"> </div><br/>
+        Mnożenie: <div id="mnozenie"> </div><br/>
+        Dzielenie: <div id="dzielenie"> </div><br/>
+        Trójkąt: <div id="trojkat"> </div><br/>
+        Największa z podanych liczb: <div id="najwieksza"> </div><br/>
+        Object student{<br/>
+        <div style="margin-left: 30px;" id="obiektStudent"></div>}<br/>
+        Zegar: <div id="zegar"> </div><br/>
+        
+        <script>
+            //Proszę o zobaczenie końcówki kodu!
+            function zad1(){
+                console.log("Zad. 1");
+                const x = 20, y = 10;
+                console.log(x+y);
+                console.log(x-y);
+                console.log(x*y);
+                console.log(x/y);
+                document.getElementById("dodawanie").innerHTML=(x+y);
+                document.getElementById("odejmowanie").innerHTML=(x-y);
+                document.getElementById("mnozenie").innerHTML=(x*y);
+                document.getElementById("dzielenie").innerHTML=(x/y);
+            }
+
+            function zad2(){
+                console.log("Zad. 2");
+                const a=10, b=20, c=10;
+                console.log((a+b+c)/2);
+                document.getElementById("trojkat").innerHTML=((a+b+c)/2);
+            }
+
+            function zad3(){
+                console.log("Zad. 3");
+                let random=Math.ceil(Math.random() * 10), userInput;
+                console.log("Wylosowana liczba: "+random);
+                let promptText="Zgadnij wylosowaną liczbę";
+                do{
+                    userInput=prompt(promptText,0);
+                    if(userInput>random) promptText="Wylosowana liczba jest mniejsza";
+                    else if(userInput<random) promptText="Wylosowana liczba jest większa";
+                }while(userInput!=random);
+                alert("Brawo, wygrałeś!");
+            }
+
+            function zad4(){
+                console.log("Zad. 4");
+                let numbers=[parseFloat(prompt("Podaj pierwszą liczbę:", 0)),
+                parseFloat(prompt("Podaj drugą liczbę:", 0)),
+                parseFloat(prompt("Podaj trzecią liczbę:", 0))];
+                console.log("Podane cyfry: "+numbers);
+
+                console.log("Największa liczba z podanych: "+Math.max(numbers[0], numbers[1], numbers[2]));
+                document.getElementById("najwieksza").innerHTML=Math.max(numbers[0], numbers[1], numbers[2]);
+            }
+
+            function zad5(){
+                function gcd(a, b){
+                    if (b == 0) {
+                        return a;
+                    } else {
+                        return gcd(b, a % b);
+                    }
+                }
+                alert("Największy wspólny dzielnik: "+gcd(parseInt(prompt("Podaj pierwszą liczbę: ", 0)),parseInt(prompt("Podaj drugą liczbę: ", 0))));
+            }
+            function zad6(){
+                class student{
+                    constructor(imie, nazwisko, wiek){
+                        this.imie = imie;
+                        this.nazwisko = nazwisko;
+                        this.wiek = wiek;
+                    }
+                }
+                let studencina1 = new student("Dawid", "Matysiak", 20);
+                studencina1.panuSprzedamyAlkohol=true;
+                console.log("Student 1: ");
+                console.log(studencina1);
+                let studencina2 = new student("Nikodem", "Krupa", 13);
+                studencina2.panuSprzedamyAlkohol=false;
+                console.log("Student 2: ");
+                console.log(studencina2);
+                let studencina3 = new student("Jakub", "Kołodziejczyk", 20);
+                studencina3.panuSprzedamyAlkohol=true;
+                console.log("Student 3: ");
+                console.log(studencina3);
+            }
+
+            function zad7(){
+                const student=Object.create(null);
+                student.imie=prompt("Podaj imię:", "Harry");
+                student.nazwisko=prompt("Podaj nazwisko:", "Potter");
+                student.wiek=prompt("Podaj wiek:", 16)
+                console.log("Student: ");
+                console.log(student);
+                document.getElementById("obiektStudent").innerHTML='Imię: '+student.imie+'<br/>Nazwisko: '+student.nazwisko+'<br/>Wiek: '+student.wiek;
+            }
+
+            //Zad. 8
+            function showTime(){
+                console.log("Bump");
+                let data=new Date;
+                document.getElementById("zegar").innerHTML=(data.getHours()+":"+data.getMinutes()+":"+data.getSeconds());
+            }
+            setInterval(showTime, 1000);
+
+            //Tutaj wpisz nr zadania, które chcesz wywołać!
+            //vvv
+            zad1();
+        </script>
+    </body>
+</html>
