@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Odliczanie noworoczne</title>
+</head>
+<body>
+
+	<p id="countdown"></p><br/>
+    <p id="countdown2"></p>
+    <table id="data"></table>
+
+
+	<script>
+        function rozgrzewka()
+        {
+            for (let i = 10; i >= 0; i--) {
+                setTimeout(function() {
+                    document.getElementById("countdown").innerHTML = i;
+                    if (i === 0) {
+                        document.getElementById("countdown").innerHTML = "Szczęśliwego nowego roku!";
+                    }
+                }, (10 - i) * 1000);
+            }
+        }
+
+        function zad1()
+        {
+            document.write("<table>");
+            for (let i = 1; i <= 10; i++) {
+                document.write("<tr>");
+                for (let j = 1; j <= 10; j++) {
+                    document.write("<td style='border: 1px solid black; padding: 5px;'>" + (i*j) + "</td>");
+                }
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        }
+
+        function zad2()
+        {
+            
+            let firstNames = ["Adam", "Anna", "Jan", "Maria", "Piotr", "Katarzyna", "Tomasz", "Ewa", "Marek", "Iwona"];
+
+            let lastNames = ["Nowak", "Kowalski", "Wójcik", "Kowalczyk", "Mazur", "Krawczyk", "Kaczmarek", "Król", "Szymański", "Woźniak"];
+
+            
+            let numRecords = parseInt(prompt("Podaj ilość rekordów:"));
+
+            if (isNaN(numRecords) || numRecords < 1) {
+                alert("Podaj liczbę dodatnią.");
+                return;
+            }
+
+            let persons = [];
+            for (let i = 0; i < numRecords; i++) {
+                let firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+                let lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                let age = Math.floor(Math.random() * (80 - 18 + 1)) + 18;
+                let phone = Math.floor(Math.random() * (8000000 - 5000000 + 1)) + 5000000;
+                let person = { "name": firstName, "surname": lastName, "age": age, "phone": phone };
+                persons.push(person);
+            }
+            let table = document.getElementById("data");
+            table.innerHTML = "<tr><th>Imię</th><th>Nazwisko</th><th>Wiek</th><th>Telefon</th></tr>";
+            for (let i = 0; i < persons.length; i++) {
+                let row = "<tr><td>" + persons[i].name + "</td><td>" + persons[i].surname + "</td><td>" + persons[i].age + "</td><td>" + persons[i].phone + "</td></tr>";
+                table.innerHTML += row;
+            }
+        }
+
+        function zad3()
+        {
+            const users = [
+            { name: "Jan", surname: "Kowalski", money: 1000, pin: 1234 },
+            { name: "Anna", surname: "Nowak", money: 2000, pin: 5678 },
+            { name: "Marek", surname: "Zięba", money: 5000, pin: 9012 }
+            ];
+
+            function login() {
+            const pin = prompt("Podaj PIN:");
+            const index = users.findIndex(user => user.pin == pin);
+            if (index !== -1) {
+                const user = users[index];
+                alert(`Witaj ${user.name} ${user.surname}!\nAktualnie masz ${user.money} zł.`);
+                menu(user);
+            } else {
+                alert("Niepoprawny PIN!");
+            }
+            }
+
+            function menu(user) {
+            const choice = prompt("Co chcesz zrobić?\n1 - Wypłata\n2 - Wpłata\n0 - Wyjście");
+            switch (choice) {
+                case "1":
+                withdraw(user);
+                break;
+                case "2":
+                deposit(user);
+                break;
+                case "0":
+                alert("Dziękujemy za skorzystanie z naszych usług!");
+                break;
+                default:
+                alert("Niepoprawny wybór!");
+                menu(user);
+            }
+            }
+
+            function withdraw(user) {
+            const amount = parseFloat(prompt("Podaj kwotę do wypłaty:"));
+            if (amount <= user.money) {
+                user.money -= amount;
+                alert(`Wypłacono ${amount} zł.\nAktualnie masz ${user.money} zł.`);
+                menu(user);
+            } else {
+                alert("Niewystarczająca ilość środków!");
+                menu(user);
+            }
+            }
+
+            function deposit(user) {
+            const amount = parseFloat(prompt("Podaj kwotę do wpłaty:"));
+            user.money += amount;
+            alert(`Wpłacono ${amount} zł.\nAktualnie masz ${user.money} zł.`);
+            menu(user);
+            }
+
+            login();
+
+        }
+		
+        zad3();
+        
+	</script>
+
+</body>
+</html>
