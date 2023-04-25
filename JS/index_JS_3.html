@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laby nr 6</title>
+</head>
+<body>
+
+	<script>
+
+
+        class prostokat
+        {
+            constructor(height, width, name){
+                this.height=height;
+                this.width=width;
+                this.name=name;
+            }
+            
+            licz_obw()
+            {
+                return this.height*2+this.width*2;
+            }
+
+            licz_pole()
+            {
+                return this.height*this.width;
+            }
+
+            porownaj(inny_prostokat)
+            {
+                return this.licz_pole()>inny_prostokat.licz_pole() ? this : inny_prostokat;
+            }
+
+            zmien_imie(new_name)
+            {
+                this.name=new_name;
+            }
+
+        }
+
+        const Anna = new prostokat(10,10,"Anna");
+        const Maria = new prostokat(10,20,"Maria");
+        const Wesolowska = new prostokat(21,37,"Wesołowska");
+
+        console.log("Obwód prostokąta: "+Maria.licz_obw());
+        console.log("Pole prostokąta: "+Wesolowska.licz_pole());
+        console.log("Większe pole prostokąta ma: "+Anna.porownaj(Maria).name);
+
+            class 三角形{
+                constructor(身長, 長さ, name){
+                    this.身長 = 身長;
+                    this.長さ = 長さ;
+                    this.name = name;
+                }
+
+                licz_pole()
+                {
+                    return (this.長さ*this.身長)/2;
+                }
+
+                比較(別の三角形)
+                {
+                    return this.licz_pole()>別の三角形.licz_pole() ? this : 別の三角形;
+                }
+            }
+
+            const Shinji = new 三角形(10, 10 , "Shinji");
+            const Rei = new 三角形(21, 37 , "Rei");
+            const Asuka = new 三角形(30, 20 , "Asuka");
+
+            console.log("Pole trójkąta: "+Rei.licz_pole());
+            console.log("Większe pole trójkąta ma: "+Shinji.比較(Asuka).name)
+
+        class trapez
+        {
+            constructor(wysokosc, podstawa1, podstawa2, name){
+                this.wysokosc=wysokosc;
+                this.podstawa1=podstawa1;
+                this.podstawa2=podstawa2;
+                this.name=name;
+            }
+            
+            licz_pole()
+            {
+                return ((this.podstawa1+this.podstawa2)*this.wysokosc)/2;
+            }
+        }
+
+        const trapez1 = new trapez(10,10,10,"1");
+        const trapez2 = new trapez(10,20,30,"2");
+        const trapez3 = new trapez(21,37,10,"3");
+
+        console.log("Pole trapezu: "+trapez1.licz_pole());
+
+        function gigaPoleInator(prostokat, trojkat, trapez)
+        {
+            let biggest = prostokat;
+            if(biggest.licz_pole()<trojkat.licz_pole())
+            {
+                biggest=trojkat;
+            }
+            if(biggest.licz_pole()<trapez.licz_pole())
+            {
+                biggest=trapez;
+            }
+
+            return biggest;
+        }
+
+        const bufor=gigaPoleInator(Anna, Asuka, trapez2);
+        console.log("Największe pole z 3 figur wynosi: "+bufor.licz_pole());
+        console.log("Nazwa tej figury to: "+bufor.name);
+
+        function gigaProstokatoObwInator(postokat, ten_gorszy_prostokat)
+        {
+            return postokat.licz_pole()>ten_gorszy_prostokat.licz_pole() ? postokat : ten_gorszy_prostokat;
+        }
+
+        console.log("Największy obw z podanych 2 prostokątów ma: "+gigaProstokatoObwInator(Anna, Wesolowska).name);
+
+        Anna.zmien_imie("Ania");
+        console.log("Anna zmieniła imię na: "+Anna.name)
+	</script>
+
+</body>
+</html>
