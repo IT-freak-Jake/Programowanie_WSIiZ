@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laby nr 6+</title>
+</head>
+<body>
+
+	<script>
+
+        let tablica = [1,2,3,4,5,6,7,8,9,10];
+        console.log("Nasza tablica: ");
+        console.log(tablica);
+        let suma = 0;
+        for(let i=0; i<tablica.length; i++)
+        {
+            suma+=tablica[i];
+        }
+
+        console.log("Zsumowana wartość tablicy: "+suma);
+        console.log("Liczby parzyste w tablicy: ");
+
+            
+        tablica.forEach(element => {element%2==0 ? console.log(element) : null;});
+        
+        console.log("Tablica pomnożona przez 3: ");
+        tablica.forEach((element,index) => {tablica[index]=element*3;});
+        console.log(tablica);
+
+        tablica.push(67651);
+        console.log("Index nr albumu: ");
+        console.log(tablica.indexOf(67651));
+            
+        console.log("Średnia: ");
+        let sumaSrednia = 0;
+        for(let i=0; i<tablica.length; i++)
+        {
+            sumaSrednia+=tablica[i];
+        }
+
+        console.log(sumaSrednia/tablica.length);
+
+        let biggest = null;
+        tablica.forEach(element => {
+            if(biggest==null || biggest<element)biggest=element;
+        });
+
+        console.log("Największa wartość w tablicy: "+biggest);
+
+        let wybranaWartosc=3;
+        console.log("Nasza tablica: ");
+        console.log(tablica);
+
+        let wystapienia=0;
+
+        tablica.forEach(element => {
+            if(element==wybranaWartosc)wystapienia++;
+        });
+
+        console.log("Ilość wystąpień szukanej wartości: "+wystapienia);
+
+        console.log("Tablica z Fibonaccim: ");
+
+        let fib = [0, 1];
+        for (let i = 2; i < 100; i++) {
+        fib[i] = fib[i-1] + fib[i-2];
+        }
+        console.log(fib);
+
+    </script>
+
+</body>
+</html>
