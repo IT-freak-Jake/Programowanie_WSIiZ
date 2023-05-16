@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laby nr 7 - JS Zad. 2</title>
+    <style>
+      .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group input[type="password"],
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+
+      .form-group input[type="button"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .form-group input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+    <h2>Formularz rejestracji</h2>
+    <form id="registration-form" action="#" method="post">
+      <div class="form-group">
+        <label for="first-name">Imię:</label>
+        <input type="text" id="first-name" name="first-name">
+      </div>
+      <div class="form-group">
+        <label for="last-name">Nazwisko:</label>
+        <input type="text" id="last-name" name="last-name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Hasło (co najmniej 8 znaków):</label>
+        <input type="password" id="password" name="password">
+      </div>
+      <div class="form-group">
+        <label for="gender">Płeć:</label>
+        <select id="gender" name="gender">
+          <option value="">Wybierz płeć</option>
+          <option value="male">👨 Mężczyzna</option>
+          <option value="female">👩 Kobieta</option>
+          <option value="other">🚁 Helikopter Bojowy</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefon:</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+      <div class="form-group">
+        <label for="birthdate">Data urodzenia:</label>
+        <input type="date" id="birthdate" name="birthdate">
+      </div>
+      <div class="form-group">
+        <label for="country">Kraj:</label>
+        <input type="text" id="country" name="country">
+        </div>
+      <div class="form-group">
+        <input type="button" value="Zapisz" id="submit_button">
+      </div>
+    </form>
+  </div>
+	<script>
+
+    const form = document.getElementById('registration-form');
+    const submit_button = document.getElementById('submit_button');
+
+    submit_button.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      if (validateForm()) {
+        alert("Poprawnie wypełniono formularz");
+      }
+    });
+
+    function validateForm() {
+      const firstNameInput = document.getElementById('first-name');
+      const lastNameInput = document.getElementById('last-name');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const genderInput = document.getElementById('gender');
+      const phoneInput = document.getElementById('phone');
+      const birthdateInput = document.getElementById('birthdate');
+      const countryInput = document.getElementById('country');
+      let isValid = true;
+
+      if (!hasValue(firstNameInput)) {
+        displayErrorMessage(firstNameInput, 'Podaj swoje imię.');
+        isValid = false;
+      }
+
+      else if (!hasValue(lastNameInput)) {
+        displayErrorMessage(lastNameInput, 'Podaj swoje nazwisko.');
+        isValid = false;
+      }
+
+      else if (!hasValue(emailInput)) {
+        displayErrorMessage(emailInput, 'Podaj adres email.');
+        isValid = false;
+      } else if (!isValidEmail(emailInput.value)) {
+        displayErrorMessage(emailInput, 'Podaj poprawny adres email.');
+        isValid = false;
+      }
+
+      else if (!hasValue(passwordInput)) {
+        displayErrorMessage(passwordInput, 'Podaj hasło.');
+        isValid = false;
+      } else if (!isStrongPassword(passwordInput.value)) {
+        displayErrorMessage(passwordInput, 'Hasło musi mieć co najmniej 8 znaków.');
+        isValid = false;
+      }
+
+      else if (!hasValue(genderInput)) {
+        displayErrorMessage(genderInput, 'Wybierz płeć.');
+        isValid = false;
+      }
+
+      else if (!hasValue(phoneInput)) {
+        displayErrorMessage(phoneInput, 'Podaj numer telefonu.');
+        isValid = false;
+      }
+
+      else if (!hasValue(birthdateInput)) {
+        displayErrorMessage(birthdateInput, 'Podaj datę urodzenia.');
+        isValid = false;
+      }
+
+      else if (!hasValue(countryInput)) {
+        displayErrorMessage(countryInput, 'Podaj kraj.');
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    function hasValue(input) {
+      return input.value.trim() !== '';
+    }
+
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function isStrongPassword(password) { 
+      return password.length >= 8;
+    }
+
+    function displayErrorMessage(inputElement, message) {
+      inputElement.setCustomValidity(message);
+      inputElement.reportValidity();
+    }
+
+    </script>
+
+</body>
+</html>

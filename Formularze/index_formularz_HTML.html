@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Laby nr 7 - HTML Zad. 1</title>
+    <style>
+        .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        }
+
+        .form-group {
+        margin-bottom: 20px;
+        }
+
+        .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        }
+
+        .form-group input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+        background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+    <h2>Formularz rejestracji</h2>
+    <form id="registration-form" action="#" method="post">
+      <div class="form-group">
+        <label for="first-name">Imię:</label>
+        <input type="text" id="first-name" name="first-name" required>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Nazwisko:</label>
+        <input type="text" id="last-name" name="last-name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Hasło (co najmniej 8 znaków):</label>
+        <input type="password" id="password" name="password" minlength="8" required>
+      </div>
+      <div class="form-group">
+        <label for="gender">Płeć:</label>
+        <select id="gender" name="gender" required>
+          <option value="">Wybierz płeć</option>
+          <option value="male">👨 Mężczyzna</option>
+          <option value="female">👩 Kobieta</option>
+          <option value="other">🚁 Helikopter Bojowy</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefon:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="birthdate">Data urodzenia:</label>
+        <input type="date" id="birthdate" name="birthdate" required>
+      </div>
+      <div class="form-group">
+        <label for="country">Kraj:</label>
+        <input type="text" id="country" name="country" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Zapisz">
+      </div>
+    </form>
+
+</body>
+</html>

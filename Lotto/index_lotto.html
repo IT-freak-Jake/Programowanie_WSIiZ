@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laby nr 7* - Lotto</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lotto</h1>
+    <button onclick="generateTickets()">Generuj zakłady</button>
+    <button onclick="generateWinningNumbers()">Generuj zwycięskie liczby</button>
+    <button onclick="checkResults()">Sprawdź wyniki</button>
+
+    <h2>Zwycięskie liczby</h2>
+    <table id="winningNumbersTable"></table>
+
+    <h2>Wyniki</h2>
+    <div id="results"></div>
+
+    <br/><h2>Zakłady</h2>
+    <table id="ticketsTable"></table>
+
+    <script>
+        var tickets = [];
+        var winningNumbers = [];
+
+        function generateTickets() {
+            tickets = [];
+            var numTickets = 1000; // liczba wygenerowanych zakładów (Zmniejszyłem liczbę zakładów z 1mln do 1k, ponieważ zawieszało to przeglądarkę)
+
+            for (var i = 0; i < numTickets; i++) {
+                var ticket = [];
+                for (var j = 0; j < 6; j++) {
+                    var number = Math.floor(Math.random() * 49) + 1;
+                    ticket.push(number);
+                }
+                tickets.push(ticket);
+            }
+
+            displayTickets();
+        }
+
+        function generateWinningNumbers() {
+            winningNumbers = [];
+
+            for (var i = 0; i < 3; i++) {
+                var winningNumber = tickets[Math.floor(Math.random() * tickets.length)];
+                winningNumbers.push(winningNumber);
+            }
+
+            displayWinningNumbers();
+        }
+
+        function displayTickets() {
+            var table = document.getElementById("ticketsTable");
+            table.innerHTML = "";
+
+            for (var i = 0; i < tickets.length; i++) {
+                var row = table.insertRow(i);
+                var idCell = row.insertCell(0);
+                idCell.innerHTML = "ID " + (i + 1);
+
+                for (var j = 0; j < 6; j++) {
+                    var cell = row.insertCell(j + 1);
+                    cell.innerHTML = tickets[i][j];
+                }
+            }
+        }
+
+        function displayWinningNumbers() {
+            var table = document.getElementById("winningNumbersTable");
+            table.innerHTML = "";
+
+            for (var i = 0; i < winningNumbers.length; i++) {
+                var row = table.insertRow(i);
+                var idCell = row.insertCell(0);
+                idCell.innerHTML = "Kombinacja " + (i + 1);
+
+                for (var j = 0; j < 6; j++) {
+                    var cell = row.insertCell(j + 1);
+                    cell.innerHTML = winningNumbers[i][j];
+                    
+                }
+            }
+        }
+
+        function checkResults() {
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            for (var i = 0; i < winningNumbers.length; i++) {
+                var result = findMatches(winningNumbers[i]);
+                var resultString = result.matches.length > 0 ? result.matches.join(", ") : "Brak dopasowań";
+                resultString += "<br>";
+                resultsDiv.innerHTML += resultString;
+            }
+        }
+
+        function findMatches(numbers) {
+            var matches = [];
+            var winningIndex = -1;
+
+            for (var i = 0; i < tickets.length; i++) {
+                var ticket = tickets[i];
+                var isMatch = true;
+
+                for (var j = 0; j < numbers.length; j++) {
+                    if (numbers[j] !== ticket[j]) {
+                        isMatch = false;
+                        break;
+                    }
+                }
+
+                if (isMatch) {
+                    matches.push("ID " + (i + 1) + ": " + ticket.join(", "));
+                    if (winningIndex === -1) {
+                        winningIndex = i;
+                    }
+                }
+            }
+
+            return {
+                matches: matches,
+                winningIndex: winningIndex
+            };
+        }
+    </script>
+</body>
+</html>
+               
