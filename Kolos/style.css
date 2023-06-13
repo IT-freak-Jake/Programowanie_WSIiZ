@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.calculator {
+  width: 200px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.display {
+  height: 30px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  text-align: right;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.buttons button {
+  width: 40px;
+  height: 40px;
+  margin: 2px;
+  font-size: 16px;
+}
+
+.buttons button:nth-child(4n) {
+  background-color: #ff9900;
+  color: white;
+}
+
+.buttons button:nth-child(4n+1),
+.buttons button:nth-child(4n+2),
+.buttons button:nth-child(4n+3) {
+  background-color: #e6e6e6;
+  color: #333;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+.animation {
+  width: 100px;
+  height: 100px;
+  background-color: #ff6a00;
+  border-radius: 30px;
+  position: relative;
+  animation-name: move;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transform: translateX(-50%);
+  text-align: center;
+  line-height: 100px;
+  font-size: 60px;
+}
+
+@keyframes move {
+  0%{
+    left: 55%;
+    transform: rotate(90deg);
+  }
+  50%{
+    left: 40%;
+    transform: rotate(-90deg);
+  }
+  100%{
+    left: 55%;
+    transform: rotate(90deg);
+  }
+}
+
